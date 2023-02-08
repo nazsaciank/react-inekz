@@ -1,56 +1,25 @@
 import { Injectable } from '../decorators'
 import axios, { AxiosRequestConfig } from 'axios'
-import { Observable } from 'rxjs'
 
 @Injectable()
 export class HttpService {
     public get<Res = any>(url: string, config?: AxiosRequestConfig) {
-        return new Observable<Res>((observer) => {
-            axios
-                .get(url, config)
-                .then((response) => observer.next(response.data))
-                .catch((error) => observer.error(error))
-                .finally(() => observer.complete())
-        })
+        return axios.get<any, Res>(url, config)
     }
 
     public post<Res = any>(url: string, data: any, config?: AxiosRequestConfig) {
-        return new Observable<Res>((observer) => {
-            axios
-                .post(url, data, config)
-                .then((response) => observer.next(response.data))
-                .catch((error) => observer.error(error))
-                .finally(() => observer.complete())
-        })
+        return axios.post<any, Res>(url, data, config)
     }
 
     public put<Res = any>(url: string, data?: any, config?: AxiosRequestConfig) {
-        return new Observable<Res>((observer) => {
-            axios
-                .put(url, data, config)
-                .then((response) => observer.next(response.data))
-                .catch((error) => observer.error(error))
-                .finally(() => observer.complete())
-        })
+        return axios.put<any, Res>(url, data, config)
     }
 
     public delete<Res = any>(url: string, config?: AxiosRequestConfig) {
-        return new Observable<Res>((observer) => {
-            axios
-                .delete(url, config)
-                .then((response) => observer.next(response.data))
-                .catch((error) => observer.error(error))
-                .finally(() => observer.complete())
-        })
+        return axios.delete<any, Res>(url, config)
     }
 
     public patch<Res = any>(url: string, data?: any, config?: AxiosRequestConfig) {
-        return new Observable<Res>((observer) => {
-            axios
-                .patch(url, data, config)
-                .then((response) => observer.next(response.data))
-                .catch((error) => observer.error(error))
-                .finally(() => observer.complete())
-        })
+        return axios.patch<any, Res>(url, data, config)
     }
 }
