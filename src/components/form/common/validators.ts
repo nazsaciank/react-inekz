@@ -8,7 +8,7 @@ export type AsyncValidatorFn = (value: any) => Promise<ValidatorError | null>;
 
 export class Validator {
     public static required(value: any): null | ValidatorError {
-        if (value === null || value === undefined || value === '') {
+        if (value === null || value === undefined || value === "") {
             return { required: true };
         }
         return null;
@@ -41,7 +41,7 @@ export class Validator {
 
     public static pattern(pattern: string | RegExp): ValidatorFn {
         return (value: any) => {
-            if (typeof pattern === 'string') pattern = new RegExp(pattern);
+            if (typeof pattern === "string") pattern = new RegExp(pattern);
             if (value && !pattern.test(value)) {
                 return { pattern: { requiredPattern: pattern, actualValue: value } };
             }

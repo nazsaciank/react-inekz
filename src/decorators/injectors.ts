@@ -1,4 +1,4 @@
-import { States } from '../core';
+import { States } from "../core";
 
 export function Injectable() {
     return (target: any) => {

@@ -1,14 +1,14 @@
-export const formatNumber = (value: string | number, locale = 'en-US', digitInfo = '1.0-2') => {
-    if (typeof value === 'string') value = Number(value);
+export const formatNumber = (value: string | number, locale = "en-US", digitInfo = "1.0-2") => {
+    if (typeof value === "string") value = Number(value);
 
-    const [minIntDig, fracDig] = digitInfo.split('.');
-    if (!minIntDig || !fracDig) throw new Error('Invalid digit format');
+    const [minIntDig, fracDig] = digitInfo.split(".");
+    if (!minIntDig || !fracDig) throw new Error("Invalid digit format");
 
-    const [minFracDig, maxFracDig] = fracDig.split('-');
-    if (!minFracDig || !maxFracDig) throw new Error('Invalid digit format');
+    const [minFracDig, maxFracDig] = fracDig.split("-");
+    if (!minFracDig || !maxFracDig) throw new Error("Invalid digit format");
 
     return new Intl.NumberFormat(locale, {
-        style: 'decimal',
+        style: "decimal",
         useGrouping: true,
         minimumIntegerDigits: Number(minIntDig),
         minimumFractionDigits: Number(minFracDig),
@@ -18,23 +18,23 @@ export const formatNumber = (value: string | number, locale = 'en-US', digitInfo
 
 export const formatCurrency = (
     value: string | number,
-    currency = 'USD',
-    display: string = 'symbol',
-    locale = 'en-US',
-    digitInfo = '1.0-2'
+    currency = "USD",
+    display: string = "symbol",
+    locale = "en-US",
+    digitInfo = "1.0-2"
 ) => {
-    if (typeof value === 'string') value = Number(value);
+    if (typeof value === "string") value = Number(value);
 
-    const [minIntDig, fracDig] = digitInfo.split('.');
+    const [minIntDig, fracDig] = digitInfo.split(".");
 
-    if (!minIntDig || !fracDig) throw new Error('Invalid digit format');
+    if (!minIntDig || !fracDig) throw new Error("Invalid digit format");
 
-    const [minFracDig, maxFracDig] = fracDig.split('-');
+    const [minFracDig, maxFracDig] = fracDig.split("-");
 
-    if (!minFracDig || !maxFracDig) throw new Error('Invalid digit format');
+    if (!minFracDig || !maxFracDig) throw new Error("Invalid digit format");
 
     return new Intl.NumberFormat(locale, {
-        style: 'currency',
+        style: "currency",
         currency,
         currencyDisplay: display,
         useGrouping: true,

@@ -1,9 +1,9 @@
-import React from 'react';
-import { Subscription } from 'rxjs';
-import { FormControl } from './common/formcontrol';
-import { AsyncValidatorFn, ValidatorFn } from './common/validators';
+import React from "react";
+import { Subscription } from "rxjs";
+import { FormControl } from "./common/formcontrol";
+import { AsyncValidatorFn, ValidatorFn } from "./common/validators";
 
-export interface TextareaProps<T = any> extends Omit<React.HTMLProps<HTMLTextAreaElement>, 'onChange' | 'label'> {
+export interface TextareaProps<T = any> extends Omit<React.HTMLProps<HTMLTextAreaElement>, "onChange" | "label"> {
     control: FormControl<T>;
 
     name: string;
@@ -26,16 +26,16 @@ export interface TextareaProps<T = any> extends Omit<React.HTMLProps<HTMLTextAre
 
     onChange?: (value: any) => void;
 
-    onStatus?: (status: 'valid' | 'invalid' | 'pending') => void;
+    onStatus?: (status: "valid" | "invalid" | "pending") => void;
 
     onErrors?: (errors: any) => void;
 
-    onControl?: (value: any, status: 'valid' | 'invalid' | 'pending', errors: any) => void;
+    onControl?: (value: any, status: "valid" | "invalid" | "pending", errors: any) => void;
 }
 
 export interface TextareaState {
     value: any;
-    status: 'valid' | 'invalid' | 'pending';
+    status: "valid" | "invalid" | "pending";
     errors: object | null;
     isDirty: boolean;
     isTouched: boolean;
@@ -44,7 +44,7 @@ export interface TextareaState {
 class Textarea extends React.Component<TextareaProps, TextareaState> {
     readonly state: TextareaState = {
         value: null,
-        status: 'pending',
+        status: "pending",
         errors: null,
         isDirty: false,
         isTouched: false,
@@ -119,10 +119,10 @@ class Textarea extends React.Component<TextareaProps, TextareaState> {
                     />
                     {after && <div className='after'>{after}</div>}
                 </div>
-                {hasFeedback && isTouched && isDirty && errors && status === 'invalid' && errorTemplate && (
+                {hasFeedback && isTouched && isDirty && errors && status === "invalid" && errorTemplate && (
                     <div className='text-sm text-red-600'>{errorTemplate(errors)}</div>
                 )}
-                {hasFeedback && isTouched && isDirty && !errors && status === 'valid' && successTemplate && (
+                {hasFeedback && isTouched && isDirty && !errors && status === "valid" && successTemplate && (
                     <div className='text-sm text-green-600'>{successTemplate(value)}</div>
                 )}
             </fieldset>

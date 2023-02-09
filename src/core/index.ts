@@ -1,3 +1,3 @@
-import States from './states';
+import States from "./states";
 
 export { States };

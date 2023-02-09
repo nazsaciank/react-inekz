@@ -1,12 +1,12 @@
-import { BehaviorSubject, map, tap } from 'rxjs';
-import { AsyncValidatorFn, ValidatorFn } from './validators';
+import { BehaviorSubject, map, tap } from "rxjs";
+import { AsyncValidatorFn, ValidatorFn } from "./validators";
 
 export interface ControlOptions {
     emitEvent?: boolean;
     onlySelf?: boolean;
 }
 
-export type ControlStatus = 'valid' | 'invalid' | 'pending';
+export type ControlStatus = "valid" | "invalid" | "pending";
 
 export class FormControl<T = any> {
     public name!: string;
@@ -16,7 +16,7 @@ export class FormControl<T = any> {
         return this.$value.getValue();
     }
 
-    private $status = new BehaviorSubject<ControlStatus>('pending');
+    private $status = new BehaviorSubject<ControlStatus>("pending");
     public get status() {
         return this.$status.getValue();
     }
@@ -67,7 +67,7 @@ export class FormControl<T = any> {
     }
 
     public setValidators(validators: ValidatorFn | ValidatorFn[], emit = true) {
-        if (typeof validators === 'function') validators = [validators];
+        if (typeof validators === "function") validators = [validators];
         this.validators = validators;
         if (emit) this.applyValidators();
     }
@@ -83,12 +83,12 @@ export class FormControl<T = any> {
                 });
             }
             this.$errors.next(err);
-            this.$status.next(err ? 'invalid' : 'valid');
+            this.$status.next(err ? "invalid" : "valid");
         }
     }
 
     public setAsyncValidators(validators: AsyncValidatorFn | AsyncValidatorFn[], emit = true) {
-        if (typeof validators === 'function') validators = [validators];
+        if (typeof validators === "function") validators = [validators];
         this.asyncValidators = validators;
         if (emit) this.applyAsyncValidators();
     }
@@ -97,7 +97,7 @@ export class FormControl<T = any> {
         let err: object | null = null;
 
         if (this.errors && this.asyncValidators) {
-            this.$status.next('pending');
+            this.$status.next("pending");
             const validated = await Promise.all(this.asyncValidators.map((validator) => validator(this.value)));
             const errOfValidators = validated.filter((v) => v !== null);
             if (errOfValidators.length > 0) {
@@ -107,13 +107,13 @@ export class FormControl<T = any> {
                 });
             }
             this.$errors.next(err);
-            this.$status.next(err ? 'invalid' : 'valid');
+            this.$status.next(err ? "invalid" : "valid");
         }
     }
 
     public setErrors(errors: object | null) {
         this.$errors.next(errors);
-        this.$status.next(errors ? 'invalid' : 'valid');
+        this.$status.next(errors ? "invalid" : "valid");
     }
 
     public setDirty = () => this.$isDirty.next(true);

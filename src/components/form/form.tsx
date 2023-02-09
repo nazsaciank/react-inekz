@@ -1,17 +1,17 @@
-import React from 'react';
-import { Subscription } from 'rxjs';
-import TextField from './text-field';
-import Checkbox from './checkbox';
-import Radio from './radio';
-import Switch from './switch';
-import Textarea from './textarea';
-import { Key } from '../../interfaces';
-import { classNames } from '../../common';
-import { ControlStatus, FormControl } from './common/formcontrol';
-import DatePicker from './date-picker';
-import Select from './select';
+import React from "react";
+import { Subscription } from "rxjs";
+import TextField from "./text-field";
+import Checkbox from "./checkbox";
+import Radio from "./radio";
+import Switch from "./switch";
+import Textarea from "./textarea";
+import { Key } from "../../interfaces";
+import { classNames } from "../../common";
+import { ControlStatus, FormControl } from "./common/formcontrol";
+import DatePicker from "./date-picker";
+import Select from "./select";
 
-export interface FormProps extends Omit<React.HTMLProps<HTMLFormElement>, 'onChange' | 'onSubmit'> {
+export interface FormProps extends Omit<React.HTMLProps<HTMLFormElement>, "onChange" | "onSubmit"> {
     onChange?: (values: Key) => void;
 
     onSubmit?: (values: Key, isValid: boolean, errors: Key<object | null>) => void;
@@ -78,7 +78,7 @@ class Form extends React.Component<FormProps, FormState> {
 
         return (
             <form
-                className={classNames('form', `form-${status}`, className)}
+                className={classNames("form", `form-${status}`, className)}
                 onSubmit={this.handleSubmit.bind(this)}
                 {...rest}
             >
@@ -113,7 +113,7 @@ class Form extends React.Component<FormProps, FormState> {
         const { onSubmit } = this.props;
         const { values, status, errors } = this.state;
 
-        const isValid = Object.values(status).every((v) => v === 'valid');
+        const isValid = Object.values(status).every((v) => v === "valid");
 
         onSubmit && onSubmit(values, isValid, errors);
     }

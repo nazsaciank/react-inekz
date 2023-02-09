@@ -1,5 +1,5 @@
-import React from 'react';
-import Option from './option';
+import React from "react";
+import Option from "./option";
 
 export interface SelectProps {}
 

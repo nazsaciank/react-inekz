@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": false,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "target": "es5",
-    "module": "commonjs",
+    "module": "ESNext",
     "jsx": "react",
     "moduleResolution": "node",
     "noImplicitAny": false,
