@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
 export interface OptionProps extends React.HTMLProps<HTMLOptionElement> {
-  value: string | number
+    value: string | number;
 }
 
 export interface OptionState {}
 
 class Option extends React.Component<OptionProps, OptionState> {
-  render() {
-    return <option value={this.props.value}>{this.props.children}</option>
-  }
+    render() {
+        return <option value={this.props.value}>{this.props.children}</option>;
+    }
 }
 
-export default Option
+export default Option;

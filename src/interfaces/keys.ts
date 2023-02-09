@@ -1,1 +1,1 @@
-export type Key<T = any> = { [key: string]: T }
+export type Key<T = any> = { [key: string]: T };

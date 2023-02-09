@@ -1,25 +1,56 @@
 import { Injectable } from '../decorators';
 import axios, { AxiosRequestConfig } from 'axios';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class HttpService {
     public get<Res = any>(url: string, config?: AxiosRequestConfig) {
-        return axios.get<any, Res>(url, config);
+        return new Observable<Res>((observer) => {
+            axios
+                .get(url, config)
+                .then((res) => observer.next(res.data))
+                .catch((err) => observer.error(err))
+                .finally(() => observer.complete());
+        });
     }
 
-    public post<Res = any>(url: string, data: any, config?: AxiosRequestConfig) {
-        return axios.post<any, Res>(url, data, config);
+    public post<Res = any>(url: string, data?: any, config?: AxiosRequestConfig) {
+        return new Observable<Res>((observer) => {
+            axios
+                .post(url, data, config)
+                .then((res) => observer.next(res.data))
+                .catch((err) => observer.error(err))
+                .finally(() => observer.complete());
+        });
     }
 
     public put<Res = any>(url: string, data?: any, config?: AxiosRequestConfig) {
-        return axios.put<any, Res>(url, data, config);
+        return new Observable<Res>((observer) => {
+            axios
+                .put(url, data, config)
+                .then((res) => observer.next(res.data))
+                .catch((err) => observer.error(err))
+                .finally(() => observer.complete());
+        });
     }
 
     public delete<Res = any>(url: string, config?: AxiosRequestConfig) {
-        return axios.delete<any, Res>(url, config);
+        return new Observable<Res>((observer) => {
+            axios
+                .delete(url, config)
+                .then((res) => observer.next(res.data))
+                .catch((err) => observer.error(err))
+                .finally(() => observer.complete());
+        });
     }
 
     public patch<Res = any>(url: string, data?: any, config?: AxiosRequestConfig) {
-        return axios.patch<any, Res>(url, data, config);
+        return new Observable<Res>((observer) => {
+            axios
+                .patch(url, data, config)
+                .then((res) => observer.next(res.data))
+                .catch((err) => observer.error(err))
+                .finally(() => observer.complete());
+        });
     }
 }
