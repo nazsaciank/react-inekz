@@ -19,7 +19,7 @@ export const formatNumber = (value: string | number, locale = "en-US", digitInfo
 export const formatCurrency = (
     value: string | number,
     currency = "USD",
-    display: string = "symbol",
+    display: "symbol" | "narrowSymbol" | "code" | "name" = "narrowSymbol",
     locale = "en-US",
     digitInfo = "1.0-2"
 ) => {
@@ -37,7 +37,25 @@ export const formatCurrency = (
         style: "currency",
         currency,
         currencyDisplay: display,
-        useGrouping: true,
+        minimumIntegerDigits: Number(minIntDig),
+        minimumFractionDigits: Number(minFracDig),
+        maximumFractionDigits: Number(maxFracDig),
+    })
+        .format(value)
+        .replace(/\u00a0/g, " ");
+};
+
+export const formatPercent = (value: string | number, locale = "en-US", digitInfo = "1.0-2") => {
+    if (typeof value === "string") value = Number(value);
+
+    const [minIntDig, fracDig] = digitInfo.split(".");
+    if (!minIntDig || !fracDig) throw new Error("Invalid digit format");
+
+    const [minFracDig, maxFracDig] = fracDig.split("-");
+    if (!minFracDig || !maxFracDig) throw new Error("Invalid digit format");
+
+    return new Intl.NumberFormat(locale, {
+        style: "percent",
         minimumIntegerDigits: Number(minIntDig),
         minimumFractionDigits: Number(minFracDig),
         maximumFractionDigits: Number(maxFracDig),
@@ -103,24 +121,6 @@ export const formatCurrency = (
     }
 
     return new Intl.DateTimeFormat(locale, opts).format(value)
-}
-
-export const formatPercent = (value: string | number, locale = 'en-US', digitInfo = '1.0-2') => {
-    if (typeof value === 'string') value = Number(value)
-
-    const [minIntDig, fracDig] = digitInfo.split('.')
-    if (!minIntDig || !fracDig) throw new Error('Invalid digit format')
-
-    const [minFracDig, maxFracDig] = fracDig.split('-')
-    if (!minFracDig || !maxFracDig) throw new Error('Invalid digit format')
-
-    return new Intl.NumberFormat(locale, {
-        style: 'percent',
-        useGrouping: true,
-        minimumIntegerDigits: Number(minIntDig),
-        minimumFractionDigits: Number(minFracDig),
-        maximumFractionDigits: Number(maxFracDig),
-    }).format(value)
 }
 
 export const formatBytes = (value: string | number, locale = 'en-US', digitInfo = '1.0-2') => {
