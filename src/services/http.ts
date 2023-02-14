@@ -13,8 +13,8 @@ export class HttpService {
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr = this.setHeaders(xhr, config?.headers);
-            if (config?.responseType) xhr.responseType = config.responseType;
-            if (config?.withCredentials) xhr.withCredentials = config.withCredentials;
+            xhr.responseType = config?.responseType || 'json';
+            xhr.withCredentials = config?.withCredentials || false;
 
             if (config?.reportProgress) {
                 xhr.onprogress = (e) => {
@@ -47,8 +47,8 @@ export class HttpService {
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr = this.setHeaders(xhr, config?.headers);
-            if (config?.responseType) xhr.responseType = config.responseType;
-            if (config?.withCredentials) xhr.withCredentials = config.withCredentials;
+            xhr.responseType = config?.responseType || 'json';
+            xhr.withCredentials = config?.withCredentials || false;
 
             if (config?.reportProgress) {
                 xhr.onprogress = (e) => {
@@ -81,8 +81,8 @@ export class HttpService {
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr = this.setHeaders(xhr, config?.headers);
-            if (config?.responseType) xhr.responseType = config.responseType;
-            if (config?.withCredentials) xhr.withCredentials = config.withCredentials;
+            xhr.responseType = config?.responseType || 'json';
+            xhr.withCredentials = config?.withCredentials || false;
 
             if (config?.reportProgress) {
                 xhr.onprogress = (e) => {
@@ -115,8 +115,8 @@ export class HttpService {
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr = this.setHeaders(xhr, config?.headers);
-            if (config?.responseType) xhr.responseType = config.responseType;
-            if (config?.withCredentials) xhr.withCredentials = config.withCredentials;
+            xhr.responseType = config?.responseType || 'json';
+            xhr.withCredentials = config?.withCredentials || false;
 
             if (config?.reportProgress) {
                 xhr.onprogress = (e) => {
@@ -149,8 +149,8 @@ export class HttpService {
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr = this.setHeaders(xhr, config?.headers);
-            if (config?.responseType) xhr.responseType = config.responseType;
-            if (config?.withCredentials) xhr.withCredentials = config.withCredentials;
+            xhr.responseType = config?.responseType || 'json';
+            xhr.withCredentials = config?.withCredentials || false;
 
             if (config?.reportProgress) {
                 xhr.onprogress = (e) => {
@@ -182,8 +182,8 @@ export class HttpService {
             xhr.open("HEAD", url, true);
 
             xhr = this.setHeaders(xhr, config?.headers);
-            if (config?.responseType) xhr.responseType = config.responseType;
-            if (config?.withCredentials) xhr.withCredentials = config.withCredentials;
+            xhr.responseType = config?.responseType || 'json';
+            xhr.withCredentials = config?.withCredentials || false;
 
             if (config?.reportProgress) {
                 xhr.onprogress = (e) => {
@@ -215,8 +215,8 @@ export class HttpService {
             xhr.open("OPTIONS", url, true);
             
             xhr = this.setHeaders(xhr, config?.headers);
-            if (config?.responseType) xhr.responseType = config.responseType;
-            if (config?.withCredentials) xhr.withCredentials = config.withCredentials;
+            xhr.responseType = config?.responseType || 'json';
+            xhr.withCredentials = config?.withCredentials || false;
 
             if (config?.reportProgress) {
                 xhr.onprogress = (e) => {

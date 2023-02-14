@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { Form, FormControl, Inject, TextField, Validator } from "react-inekz";
 import TestService from "./services/test";
 
@@ -37,4 +37,6 @@ class App extends React.Component {
     }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const container = document.getElementById("root");
+const root = createRoot(container!);
+root.render(<App />);
