@@ -1,14 +1,14 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { Form, FormControl, Inject, TextField, Validator } from "react-inekz";
+import { Form, FormControl, TextField, Validator } from "react-inekz";
+import ErrorBoundary from "./components/ErrorBoundary";
+import Loading from "./components/Loading";
+import { Inject } from "./decorators";
 import TestService from "./services/test";
 
 class App extends React.Component {
-    @Inject(TestService) Test: TestService;
 
-    componentDidMount() {
-        this.Test.test().subscribe(console.log);
-    }
+    @Inject('Test') Test: TestService;
 
     render() {
         return (
@@ -25,18 +25,28 @@ class App extends React.Component {
                         control={new FormControl(null, [Validator.required])}
                         label='Contraseña'
                     />
-                    <button type='submit'>Enviar</button>
+                    <button type='submit'>
+                        <Loading />
+                        Enviar
+                    </button>
                 </Form>
             </div>
         );
     }
 
     handleSubmit(value: any, isValid: boolean) {
-        console.log(value, isValid);
-        this.Test.test().subscribe(console.log);
+        this.Test.test()
+        .subscribe({
+            next: console.log,
+            error: console.error
+        })
     }
 }
 
 const container = document.getElementById("root");
 const root = createRoot(container!);
-root.render(<App />);
+root.render(
+    <ErrorBoundary>
+        <App />
+    </ErrorBoundary>
+);

@@ -98,7 +98,7 @@ class Form extends React.Component<FormProps, FormState> {
                 controllers.push(control);
                 return;
             }
-            if (child.props.children && Array.isArray(child.props.children)) {
+            if (child.props?.children && Array.isArray(child.props.children)) {
                 const controls = this.getControls(child.props.children);
                 controllers.push(...controls);
                 return;

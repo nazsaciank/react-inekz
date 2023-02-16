@@ -1,6 +1,6 @@
+import { HttpEvent, HttpOptions, HttpResponse } from "react-inekz";
 import { Observable } from "rxjs";
 import { Injectable } from "../decorators";
-import { HttpEvent, HttpOptions, HttpResponse } from "../interfaces/http";
 
 @Injectable()
 export class HttpService {
@@ -319,10 +319,7 @@ export class HttpService {
      * @param configHeaders {object} - The configuration for the request
      * @returns {XMLHttpRequest} - The XMLHttpRequest object with the headers
      */
-    private setHeaders = (
-        xhr: XMLHttpRequest,
-        configHeaders?: { [key: string]: string | string[] }
-    ): XMLHttpRequest => {
+    private setHeaders(xhr: XMLHttpRequest, configHeaders?: { [key: string]: string | string[] }): XMLHttpRequest {
         if (configHeaders) {
             Object.keys(configHeaders).forEach((key) => {
                 let value = configHeaders[key];

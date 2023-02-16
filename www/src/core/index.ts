@@ -1,3 +1,3 @@
 import ServicesCore from "./services";
 
-export { ServicesCore };
+export { ServicesCore }

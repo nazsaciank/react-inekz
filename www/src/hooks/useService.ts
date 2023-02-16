@@ -8,5 +8,5 @@ import { ServicesCore } from "../core";
 export function useService(TargetOrName: any) {
     let service = ServicesCore.find(TargetOrName);
     if (!service) throw new Error(`Service ${TargetOrName} not found`);
-    return service.state;
+    return service.state
 }
